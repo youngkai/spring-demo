@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.young.demo.mapper.UserMapper">
+    <resultMap id="userResult" type="com.young.demo.model.entity.User">
+        <id property="id" column="id"/>
+        <result property="number" column="number"/>
+        <result property="email" column="email"/>
+        <result property="password" column="password"/>
+        <result property="createdAt" column="created_at"/>
+        <result property="updatedAt" column="updated_at"/>
+    </resultMap>
+
+
+
+    <sql id="userColumns">`id`, `number`, `email`, `password`, `created_at`, `updated_at`</sql>
+
+    <select id="findById" parameterType="Long" resultMap="userResult">
+        SELECT
+        <include refid="userColumns"/>
+        FROM users WHERE id = #{id}
+    </select>
+
+    <select id="abc" parameterType="Long" resultMap="userResult">
+        SELECT
+        <include refid="userColumns"/>
+        FROM users WHERE id = #{id}
+    </select>
+</mapper>
